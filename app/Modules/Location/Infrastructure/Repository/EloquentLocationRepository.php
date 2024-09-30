@@ -10,8 +10,12 @@ use Illuminate\Database\Eloquent\Collection;
 
 class EloquentLocationRepository implements LocationRepository
 {
+    /**
+     * @return Collection<int, Location>
+     */
     public function getAllLocations(): Collection
     {
+        /** @var Collection<int, Location> $locations */
         $locations = Cache::remember('locations', 120, function () {
             return Location::all();
         });
@@ -19,6 +23,9 @@ class EloquentLocationRepository implements LocationRepository
         return $locations;
     }
 
+    /**
+     * @param array<string, mixed> $data
+     */
     public function createLocation(array $data): Location
     {
         return Location::create($data);
@@ -30,6 +37,9 @@ class EloquentLocationRepository implements LocationRepository
         return $location;
     }
 
+    /**
+     * @param array<string, mixed> $data
+     */
     public function updateLocation(int $locationId, array $data): Location
     {
         $location = $this->getLocationById($locationId);

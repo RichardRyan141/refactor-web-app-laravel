@@ -4,6 +4,7 @@ namespace App\Modules\Shared\Core\Domain\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Location extends Model
 {
@@ -14,17 +15,26 @@ class Location extends Model
         'googleMap'
     ];
 
-    public function users()
+    /**
+     * @return HasMany<User>
+     */
+    public function users(): HasMany
     {
         return $this->hasMany(User::class);
     }
 
-    public function transaction()
+    /**
+     * @return HasMany<Transaction>
+     */
+    public function transaction(): HasMany
     {
         return $this->hasMany(Transaction::class);
     }
 
-    public function waitlist()
+    /**
+     * @return HasMany<Waitlist>
+     */
+    public function waitlist(): HasMany
     {
         return $this->hasMany(Waitlist::class);
     }

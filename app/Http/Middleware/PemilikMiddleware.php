@@ -16,7 +16,8 @@ class PemilikMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check() || Auth::user()->role != 'pemilik') {
+        $user = Auth::user();
+        if (!$user || $user->role != 'pemilik') {
             return redirect()->route('login');
         }
 

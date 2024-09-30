@@ -13,8 +13,12 @@ use Illuminate\Database\Eloquent\Collection;
 
 class EloquentDashboardRepository implements DashboardRepository
 {
+    /**
+     * @return Collection<int, Location>
+     */
     public function getAllLocations(): Collection
     {
+        /** @var Collection<int, Location> $locations */
         $locations = Cache::remember('locations', 120, function () {
             return Location::all();
         });

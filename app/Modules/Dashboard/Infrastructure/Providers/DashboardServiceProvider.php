@@ -7,7 +7,7 @@ use Illuminate\Support\ServiceProvider;
 
 class DashboardServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         $this->loadViewsFrom(__DIR__.'/../../Presentation/views', 'dashboard');
     }

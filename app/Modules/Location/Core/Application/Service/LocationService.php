@@ -9,18 +9,24 @@ use Illuminate\Database\Eloquent\Collection;
 
 class LocationService
 {
-    private $locationRepository;
+    private LocationRepository $locationRepository;
 
     public function __construct(LocationRepository $locationRepository)
     {
         $this->locationRepository = $locationRepository;
     }
 
+    /**
+     * @return Collection<int, Location>
+     */
     public function getAllLocations(): Collection
     {
         return $this->locationRepository->getAllLocations();
     }
 
+    /**
+     * @param array<string, mixed> $data
+     */
     public function createLocation(array $data): Location
     {
         return $this->locationRepository->createLocation($data);
@@ -31,6 +37,9 @@ class LocationService
         return $this->locationRepository->getLocationById($locationId);
     }
 
+    /**
+     * @param array<string, mixed> $data
+     */
     public function updateLocation(int $locationId, array $data): Location
     {
         return $this->locationRepository->updateLocation($locationId, $data);

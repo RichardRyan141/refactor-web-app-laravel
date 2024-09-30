@@ -4,6 +4,8 @@ namespace App\Modules\Shared\Core\Domain\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Transaction extends Model
 {
@@ -20,22 +22,34 @@ class Transaction extends Model
         'location_id',
     ];
 
-    public function promo()
+    /**
+     * @return BelongsTo<Promo, Transaction>
+     */
+    public function promo(): BelongsTo
     {
         return $this->belongsTo(Promo::class);
     }
 
-    public function user()
+    /**
+     * @return BelongsTo<User, Transaction>
+     */
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function location()
+    /**
+     * @return BelongsTo<Location, Transaction>
+     */
+    public function location(): BelongsTo
     {
         return $this->belongsTo(Location::class);
     }
 
-    public function order()
+    /**
+     * @return HasMany<Order>
+     */
+    public function order(): HasMany
     {
         return $this->hasMany(Order::class);
     }

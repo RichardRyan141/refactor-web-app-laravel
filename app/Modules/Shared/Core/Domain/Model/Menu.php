@@ -4,6 +4,7 @@ namespace App\Modules\Shared\Core\Domain\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Menu extends Model
 {
@@ -15,7 +16,10 @@ class Menu extends Model
         'pathFoto',
     ];
 
-    public function order()
+    /**
+     * @return HasMany<Order>
+     */
+    public function order(): HasMany
     {
         return $this->hasMany(Order::class);
     }

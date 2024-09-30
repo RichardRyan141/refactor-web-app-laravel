@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Collection;
 
 interface DashboardRepository
 {
-
+    /**
+     * @return Collection<int, Location>
+     */
     public function getAllLocations(): Collection;
 }

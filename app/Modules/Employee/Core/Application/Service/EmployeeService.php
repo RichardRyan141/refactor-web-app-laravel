@@ -9,39 +9,51 @@ use Illuminate\Database\Eloquent\Collection;
 
 class EmployeeService
 {
-    private $employeeRepository;
+    private EmployeeRepository $employeeRepository;
 
     public function __construct(EmployeeRepository $employeeRepository)
     {
         $this->employeeRepository = $employeeRepository;
     }
 
+    /**
+     * @return Collection<int, User>
+     */
     public function getAllEmployees(): Collection
     {
         return $this->employeeRepository->getAllEmployees();
     }
 
+    /**
+     * @return Collection<int, Location>
+     */
     public function getAllLocations(): Collection
     {
         return $this->employeeRepository->getAllLocations();
     }
 
-    public function createEmployee($data): User
+    /**
+     * @param array<string, mixed> $data
+     */
+    public function createEmployee(array $data): User
     {
         return $this->employeeRepository->createEmployee($data);
     }
 
-    public function getEmployeeById($id): User
+    public function getEmployeeById(int $id): User
     {
         return $this->employeeRepository->getEmployeeById($id);
     }
 
-    public function updateEmployee($employeeId, $data): User
+    /**
+     * @param array<string, mixed> $data
+     */
+    public function updateEmployee(int $employeeId, array $data): User
     {
         return $this->employeeRepository->updateEmployee($employeeId, $data);
     }
 
-    public function deleteEmployee($employeeId): void
+    public function deleteEmployee(int $employeeId): void
     {
         $this->employeeRepository->deleteEmployee($employeeId);
     }
